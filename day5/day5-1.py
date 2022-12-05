@@ -7,8 +7,7 @@ clean = [['' for _ in range(8)] for _ in range(9)]
 
 # Clean up data, transpose matrix
 for i, row in enumerate(data_map.split("\n")):
-  row = row.replace("    ", " [ ] ").replace("\n", "").replace("  ", " ").split("] [")
-  for j, col in enumerate(row):
+  for j, col in enumerate(row.replace("    ", " [ ] ").replace("\n", "").replace("  ", " ").split("] [")):
     clean[j][i] = col.replace("[", "").replace("]", "").strip()
 
 # Remove empty string elements
