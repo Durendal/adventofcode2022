@@ -17,7 +17,6 @@ clean = [list(filter(('').__ne__, i[::-1])) for i in clean]
 # Process instructions
 for i in instructions:
   _, n, _, fr, _, to = i.split(" ")
-  for j in range(int(n)):
-    clean[int(to)-1].append(clean[int(fr)-1].pop())
+  clean[int(to)-1].extend([clean[int(fr)-1].pop() for _ in range(int(n))])
       
 print(*[i[-1] for i in clean],sep="")
