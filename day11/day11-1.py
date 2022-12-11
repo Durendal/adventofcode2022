@@ -30,10 +30,10 @@ for monkey in input:
   operation = monkey[-4:]
   monkeys.append(Monkey(
     objects=[i.replace(",", "") for i in monkey[1].split()[2:]],
-    div=int(operation[-3].split(" ")[-1]),
-    if_true=int(operation[-2][-1]),
-    if_false=int(operation[-1][-1]),
-    op=operation[0].split(" ")[5:],
+    div=int(operation[-3].split()[-1]),
+    if_true=int(operation[-2].split()[-1]),
+    if_false=int(operation[-1].split()[-1]),
+    op=operation[0].split(' ')[5:],
   ))
 
 for _ in range(20):
