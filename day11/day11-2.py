@@ -41,26 +41,30 @@ class Monkey:
     else:
       return self._if_false, ans 
 
-monkeys = []
+def main():
+  monkeys = []
+  
+  for monkey in input:
+    operation = monkey[-4:]
+    monkeys.append(Monkey(
+      objects=[i.replace(",", "") for i in monkey[1].split()[2:]],
+      div=int(operation[-3].split()[-1]),
+      if_true=int(operation[-2].split()[-1]),
+      if_false=int(operation[-1].split()[-1]),
+      op=operation[0].split(' ')[5:],
+    ))
+  
+  gcd = reduce(mul, [i.div() for i in monkeys], 1)
+  
+  for _ in range(10000):
+    for monkey in monkeys:
+      for item in monkey.objects():
+        ind, new = monkey.test(item)
+        monkeys[ind].add(new % gcd)
+      monkey.reset()
+      
+  ans = sorted([i.count() for i in monkeys])[-2:]
+  print(ans[0]*ans[1])
 
-for monkey in input:
-  operation = monkey[-4:]
-  monkeys.append(Monkey(
-    objects=[i.replace(",", "") for i in monkey[1].split()[2:]],
-    div=int(operation[-3].split()[-1]),
-    if_true=int(operation[-2].split()[-1]),
-    if_false=int(operation[-1].split()[-1]),
-    op=operation[0].split(' ')[5:],
-  ))
-
-gcd = reduce(mul, [i.div() for i in monkeys], 1)
-
-for _ in range(10000):
-  for monkey in monkeys:
-    for item in monkey.objects():
-      ind, new = monkey.test(item)
-      monkeys[ind].add(new % gcd)
-    monkey.reset()
-    
-ans = sorted([i.count() for i in monkeys])[-2:]
-print(ans[0]*ans[1])
+if __name__ == '__main__':
+  main()
