@@ -36,7 +36,7 @@ for monkey in input:
     op=operation[0].split(" ")[5:],
   ))
 
-for i in range(20):
+for _ in range(20):
   for i, monkey in enumerate(monkeys):
     for item in monkey._objects:
       ind, new = monkey.test(item)

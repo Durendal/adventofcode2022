@@ -37,7 +37,7 @@ for monkey in input:
   ))
   d *= monkeys[-1]._div
 
-for i in range(10000):
+for _ in range(10000):
   for i, monkey in enumerate(monkeys):
     for item in monkey._objects:
       ind, new = monkey.test(item)
