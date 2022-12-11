@@ -7,7 +7,7 @@ class Monkey:
     div:      int  = 0,
     if_true:  int  = 0,
     if_false: int  = 0,
-    op:       str  = ''
+    op:       list = [] 
   ):
     self._objects  = objects
     self._div      = div
