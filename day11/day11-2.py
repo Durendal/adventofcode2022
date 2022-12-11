@@ -1,3 +1,5 @@
+from functools import reduce
+import operator
 input = [i.strip().split("\n") for i in open('input.txt', 'r').read().split("\n\n")]
 class Monkey:
 
@@ -37,7 +39,7 @@ class Monkey:
       return self._if_false, ans 
 
 monkeys = []
-d = 1
+
 for monkey in input:
   operation = monkey[-4:]
   monkeys.append(Monkey(
@@ -47,13 +49,14 @@ for monkey in input:
     if_false=int(operation[-1].split()[-1]),
     op=operation[0].split(' ')[5:],
   ))
-  d *= monkeys[-1].div()
+
+gcd = reduce(operator.mul, [i.div() for i in monkeys], 1)
 
 for _ in range(10000):
   for monkey in monkeys:
     for item in monkey.objects():
       ind, new = monkey.test(item)
-      monkeys[ind].add(new % d)
+      monkeys[ind].add(new % gcd)
     monkey.reset()
     
 ans = sorted([i._counter for i in monkeys])[-2:]
