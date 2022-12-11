@@ -25,6 +25,9 @@ class Monkey:
   def objects(self) -> list:
     return self._objects
 
+  def div(self) -> int:
+    return self._div
+
   def test(self, val: int) -> tuple:
     self._counter += 1
     ans = eval(' '.join(self._op).replace("old", str(val)))
@@ -44,7 +47,7 @@ for monkey in input:
     if_false=int(operation[-1].split()[-1]),
     op=operation[0].split(' ')[5:],
   ))
-  d *= monkeys[-1]._div
+  d *= monkeys[-1].div()
 
 for _ in range(10000):
   for monkey in monkeys:
