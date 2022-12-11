@@ -38,11 +38,11 @@ for monkey in input:
   d *= monkeys[-1]._div
 
 for _ in range(10000):
-  for i, monkey in enumerate(monkeys):
+  for monkey in monkeys:
     for item in monkey._objects:
       ind, new = monkey.test(item)
       monkeys[ind]._objects.append(new % d)
-    monkeys[i]._objects = []
+    monkey._objects = []
     
 ans = sorted([i._counter for i in monkeys])[-2:]
 print(ans[0]*ans[1])
