@@ -27,6 +27,9 @@ class Monkey:
   def objects(self) -> list:
     return self._objects
 
+  def count(self) -> int:
+    return self._counter
+
   def div(self) -> int:
     return self._div
 
@@ -59,5 +62,5 @@ for _ in range(10000):
       monkeys[ind].add(new % gcd)
     monkey.reset()
     
-ans = sorted([i._counter for i in monkeys])[-2:]
+ans = sorted([i.count() for i in monkeys])[-2:]
 print(ans[0]*ans[1])

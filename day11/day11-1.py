@@ -25,6 +25,9 @@ class Monkey:
   def objects(self) -> list:
     return self._objects
 
+  def count(self) -> int:
+    return self._counter
+
   def test(self, val: int) -> tuple:
     self._counter += 1
     ans = eval(' '.join(self._op).replace("old", str(val))) // 3
@@ -52,5 +55,5 @@ for _ in range(20):
       monkeys[ind].add(new)
     monkey.reset()
     
-ans = sorted([i._counter for i in monkeys])[-2:]
+ans = sorted([i.count() for i in monkeys])[-2:]
 print(ans[0]*ans[1])
