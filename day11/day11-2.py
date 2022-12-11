@@ -55,13 +55,13 @@ def main():
       op=operation[0].split(' ')[5:],
     ))
   
-  lcd = reduce(mul, [i.div() for i in monkeys], 1)
+  cf = reduce(mul, [i.div() for i in monkeys], 1)
   
   for _ in range(10000):
     for monkey in monkeys:
       for item in monkey.objects():
         ind, new = monkey.test(item)
-        monkeys[ind].add(new % lcd)
+        monkeys[ind].add(new % cf)
       monkey.reset()
       
   ans = sorted([i.count() for i in monkeys])[-2:]
