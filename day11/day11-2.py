@@ -16,6 +16,15 @@ class Monkey:
     self._op       = op 
     self._counter  = 0
 
+  def add(self, val: int) -> None:
+    self._objects.append(val)
+
+  def reset(self) -> None:
+    self._objects = []
+
+  def objects(self) -> list:
+    return self._objects
+
   def test(self, val: int) -> tuple:
     self._counter += 1
     ans = eval(' '.join(self._op).replace("old", str(val)))
@@ -39,10 +48,10 @@ for monkey in input:
 
 for _ in range(10000):
   for monkey in monkeys:
-    for item in monkey._objects:
+    for item in monkey.objects():
       ind, new = monkey.test(item)
-      monkeys[ind]._objects.append(new % d)
-    monkey._objects = []
+      monkeys[ind].add(new % d)
+    monkey.reset()
     
 ans = sorted([i._counter for i in monkeys])[-2:]
 print(ans[0]*ans[1])
