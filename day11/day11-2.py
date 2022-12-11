@@ -16,7 +16,7 @@ class Monkey:
     self._op       = op 
     self._counter  = 0
 
-  def test(self, val):
+  def test(self, val: int):
     self._counter += 1
     ans = eval(' '.join(self._op).replace("old", str(val)))
     if ans % self._div == 0:
