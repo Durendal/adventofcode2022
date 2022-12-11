@@ -8,7 +8,7 @@ class Monkey:
     if_true:  int  = 0,
     if_false: int  = 0,
     op:       list = [] 
-  ):
+  ) -> None:
     self._objects  = objects
     self._div      = div
     self._if_true  = if_true
@@ -16,7 +16,7 @@ class Monkey:
     self._op       = op 
     self._counter  = 0
 
-  def test(self, val: int):
+  def test(self, val: int) -> tuple:
     self._counter += 1
     ans = eval(' '.join(self._op).replace("old", str(val)))
     if ans % self._div == 0:
