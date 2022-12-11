@@ -1,6 +1,6 @@
 from functools import reduce
 from operator import mul
-input = [i.strip().split("\n") for i in open('input.txt', 'r').read().split("\n\n")]
+
 class Monkey:
 
   def __init__(
@@ -42,6 +42,7 @@ class Monkey:
       return self._if_false, ans 
 
 def main():
+  input = [i.strip().split("\n") for i in open('input.txt', 'r').read().split("\n\n")]
   monkeys = []
   
   for monkey in input:
