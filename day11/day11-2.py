@@ -1,5 +1,5 @@
 from functools import reduce
-import operator
+from operator import mul
 input = [i.strip().split("\n") for i in open('input.txt', 'r').read().split("\n\n")]
 class Monkey:
 
@@ -50,7 +50,7 @@ for monkey in input:
     op=operation[0].split(' ')[5:],
   ))
 
-gcd = reduce(operator.mul, [i.div() for i in monkeys], 1)
+gcd = reduce(mul, [i.div() for i in monkeys], 1)
 
 for _ in range(10000):
   for monkey in monkeys:
