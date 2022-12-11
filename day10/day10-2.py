@@ -25,13 +25,11 @@ def main():
         x += ins
         adding = False
       else:
-        try:
-          inst = insts.get()
-          if inst[0] != 'noop':
-            adding = True
-            ins = int(inst[1])
-        except:
-          pass
+        if insts.empty(): continue
+        inst = insts.get()
+        if inst[0] != 'noop':
+          adding = True
+          ins = int(inst[1])
   
   print_map(map)
 
