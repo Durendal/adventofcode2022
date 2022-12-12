@@ -8,7 +8,7 @@ def main():
   insts = [i.split() for i in open('input.txt', 'r').readlines() if i != '\n'][::-1]
   map = [['' for _ in range(40)] for _ in range(6)]
   
-  adding = False
+  add = False
   
   acc = 0
   cycle = 0
@@ -18,14 +18,13 @@ def main():
     for j in range(len(map[i])):
       map[i][j] = update_map(cycle, x)
       cycle += 1
-      if adding:
+      if add:
         x += acc 
-        adding = False
+        add = False
       else:
-        if not insts: continue
         inst = insts.pop()
         if inst[0] != 'noop':
-          adding = True
+          add = True
           acc = int(inst[1])
   
   print_map(map)

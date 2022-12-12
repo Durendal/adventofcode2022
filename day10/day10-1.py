@@ -3,24 +3,23 @@ def main():
   checks = [20, 60, 100, 140, 180, 220]
   signals = []
   
-  adding = False
+  add = False
   
   acc = 0
   cycle = 0
   x = 1
-  
+
   while cycle < 240:
     cycle += 1
     if cycle in checks:
       signals.append(x*cycle)
-    if adding:
+    if add:
       x += acc 
-      adding = False
+      add = False
     else:
-      if not insts: break
       inst = insts.pop()
       if inst[0] != 'noop':
-        adding = True
+        add = True
         acc = int(inst[1])
   
   print(sum(signals))
