@@ -1,5 +1,3 @@
-from queue import Queue
-
 def print_map(map: list) -> None:
   for line in map: print(*line, sep="")
 
@@ -7,13 +5,12 @@ def update_map(cycle: int, x: int) -> str:
   return '#' if x-1 <= cycle%40 <= x+1 else '.'
 
 def main():
-  insts = Queue()
-  [insts.put(i.split()) for i in open('input.txt', 'r').readlines() if i != '\n']
+  insts = [i.split() for i in open('input.txt', 'r').readlines() if i != '\n'][::-1]
   map = [['' for _ in range(40)] for _ in range(6)]
   
   adding = False
   
-  ins = 0
+  acc = 0
   cycle = 0
   x = 1
   
@@ -22,14 +19,14 @@ def main():
       map[i][j] = update_map(cycle, x)
       cycle += 1
       if adding:
-        x += ins
+        x += acc 
         adding = False
       else:
-        if insts.empty(): continue
-        inst = insts.get()
+        if not insts: continue
+        inst = insts.pop()
         if inst[0] != 'noop':
           adding = True
-          ins = int(inst[1])
+          acc = int(inst[1])
   
   print_map(map)
 

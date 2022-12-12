@@ -1,14 +1,11 @@
-from queue import Queue
-
 def main():
-  insts = Queue()
-  [insts.put(i.split()) for i in open('input.txt', 'r').readlines() if i != '\n']
+  insts = [i.split() for i in open('input.txt', 'r').readlines() if i != '\n'][::-1]
   checks = [20, 60, 100, 140, 180, 220]
   signals = []
   
   adding = False
   
-  ins = 0
+  acc = 0
   cycle = 0
   x = 1
   
@@ -17,14 +14,14 @@ def main():
     if cycle in checks:
       signals.append(x*cycle)
     if adding:
-      x += ins
+      x += acc 
       adding = False
     else:
-      if insts.empty(): break
-      inst = insts.get()
+      if not insts: break
+      inst = insts.pop()
       if inst[0] != 'noop':
         adding = True
-        ins = int(inst[1])
+        acc = int(inst[1])
   
   print(sum(signals))
 
